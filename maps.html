@@ -6,6 +6,8 @@
         let map;
         let marker;
         let geocoder;
+        let responseDiv;
+        let response;
 
         function initMap() {
             map = new google.maps.Map(document.getElementById("map"), {
@@ -15,49 +17,45 @@
             });
             geocoder = new google.maps.Geocoder();
 
-            const inputText = document.createElement("input");
-            inputText.type = "text";
-            inputText.placeholder = "Enter a location";
-            inputText.id = "mapInput";
+            response = document.createElement("pre");
+            response.id = "response";
+            response.innerText = "";
+            responseDiv = document.createElement("div");
+            responseDiv.id = "response-container";
+            responseDiv.appendChild(response);
 
-            const submitButton = document.createElement("input");
-            submitButton.type = "button";
-            submitButton.value = "Geocode";
-            submitButton.classList.add("button", "button-primary");
-            submitButton.id = "mapSubmit";
-
-            map.controls[google.maps.ControlPosition.TOP_LEFT].push(inputText);
-            map.controls[google.maps.ControlPosition.TOP_LEFT].push(submitButton);
+            map.controls[google.maps.ControlPosition.LEFT_TOP].push(responseDiv);
 
             marker = new google.maps.Marker({ map });
 
-            submitButton.addEventListener("click", () => geocode({ address: inputText.value }));
             map.addListener("click", (e) => geocode({ location: e.latLng }));
 
-            window.addEventListener("message", function(event) {
-                if (event.data.type === "SET_INPUT_VALUE") {
-                    inputText.value = event.data.value;
-                    submitButton.click(); // Automatically trigger Geocode
+            window.addEventListener('message', function(event) {
+                if (event.data.type === 'SET_INPUT_VALUE') {
+                    geocode({ address: event.data.value });
                 }
             });
         }
 
         function geocode(request) {
-            geocoder
-                .geocode(request)
-                .then((result) => {
-                    const { results } = result;
-                    map.setCenter(results[0].geometry.location);
-                    marker.setPosition(results[0].geometry.location);
-                    marker.setMap(map);
-                    console.log(
-                        results[0].geometry.location.lat(),
-                        results[0].geometry.location.lng()
-                    );
-                })
-                .catch((e) => {
-                    alert("Geocode was not successful: " + e);
-                });
+            marker.setMap(null); // Clear the previous marker
+            geocoder.geocode(request).then((result) => {
+                const { results } = result;
+                map.setCenter(results[0].geometry.location);
+                marker.setPosition(results[0].geometry.location);
+                marker.setMap(map);
+                console.log(result.results[0].geometry.location.lat(), result.results[0].geometry.location.lng());
+                window.parent.postMessage(
+              {
+                type: "SET_LAT_LNG",
+                lat: results[0].geometry.location.lat(),
+                lng: results[0].geometry.location.lng(),
+              },
+              "*"
+            );
+            }).catch((e) => {
+                alert("Geocode was not successful: " + e);
+            });
         }
 
         window.initMap = initMap;
@@ -67,8 +65,7 @@
             height: 100%;
         }
 
-        html,
-        body {
+        html, body {
             height: 100%;
             margin: 0;
             padding: 0;
@@ -81,5 +78,15 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbPVtRSzC2H_bw5veu3NOjQXBEi4OsKhc&callback=initMap&v=weekly"
         defer
     ></script>
+
+    <input type="text" id="leftInput" placeholder="Enter a location">
+    <button onclick="sendInputToMap()">Test</button>
+
+    <script>
+        function sendInputToMap() {
+            const inputValue = document.getElementById('leftInput').value;
+            window.postMessage({ type: 'SET_INPUT_VALUE', value: inputValue }, '*');
+        }
+    </script>
 </body>
 </html>
