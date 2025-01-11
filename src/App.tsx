@@ -10,8 +10,20 @@ export const App = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    console.log(inputValue);
     setShowMap(true);
+    // Send message to iframe after a short delay to ensure it's loaded
+    setTimeout(() => {
+      const mapFrame = document.querySelector("iframe");
+      if (mapFrame && mapFrame.contentWindow) {
+        mapFrame.contentWindow.postMessage(
+          {
+            type: "SET_INPUT_VALUE",
+            value: inputValue,
+          },
+          "*"
+        );
+      }
+    }, 100);
   };
 
   return (
