@@ -28,8 +28,9 @@ export async function chatWithCohere(message: string): Promise<string> {
             fullResponse += chatEvent.delta?.message || '';
         }
     }
+    console.log(fullResponse);
 
-    return fullResponse;
+    return fullResponse.trim();
 }
 
 // Example usage:
