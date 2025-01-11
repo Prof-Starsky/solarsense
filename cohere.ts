@@ -6,14 +6,19 @@ const cohere = new CohereClientV2({
     token: API_KEY});
 
 (async () => {
+  const messages = [
+    {
+      role: 'user',
+
+      content: 'hello world!',
+
+    },
+
+  ],
+
   const stream = await cohere.chatStream({
     model: 'command-r7b-12-2024',
-    messages: [
-      {
-        role: 'user',
-        content: 'hello world!',
-      },
-    ],
+    messages: messages,
   });
 
   for await (const chatEvent of stream) {
@@ -22,3 +27,10 @@ const cohere = new CohereClientV2({
     }
   }
 })();
+
+// const messages = [
+//   {
+//     role: 'system',
+//     content: 'You are a helpful, friendly, and informative chatbot trained in only repeating FACTUAL information about solar panels and their installation.',
+//   }
+// ];
