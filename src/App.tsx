@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { getWeatherData } from "./request.ts";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export const App = () => {
   const [inputValue, setInputValue] = useState("");
@@ -16,7 +17,7 @@ export const App = () => {
     event.preventDefault();
     setInputValue("");
     setShowMap(true);
-    setIsTopPosition(true);
+    setIsTopPosition(true); // Trigger the top position for the form
     setTimeout(() => {
       const mapFrame = document.querySelector("iframe");
       if (mapFrame && mapFrame.contentWindow) {
@@ -51,84 +52,78 @@ export const App = () => {
 
   return (
     <div
-      className="container"
+      className="container-fluid"
       style={{
-        display: "flex",
-        width: "100%",
         height: "100vh",
         overflow: "hidden",
+        padding: "20px",
       }}
     >
-      {/* Left half - Map Container */}
-      <div
-        className="map-container"
-        style={{
-          width: "50%",
-          height: "100%",
-          borderRight: "1px solid #ccc",
-        }}
-      >
-        {showMap && (
-          <iframe
-            src="/maps.html"
-            style={{
-              width: "100%",
-              height: "100%",
-              border: "none",
-              display: "block",
-            }}
-            title="map"
-          />
-        )}
-      </div>
+      <div className="row h-100">
+        {/* Left half - Map Container */}
+        <div className="col-6">
+          <div className="card h-100">
+            <div className="card-body" style={{ position: "relative" }}>
+              {showMap && (
+                <iframe
+                  src="/maps.html"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    border: "none",
+                    display: "block",
+                  }}
+                  title="map"
+                />
+              )}
+            </div>
+          </div>
+        </div>
 
-      {/* Right half - Content Container */}
-      <div
-        className="content-container"
-        style={{
-          width: "50%",
-          height: "100%",
-          position: "relative",
-        }}
-      >
-        <div
-          className="form-container"
-          style={{
-            position: "absolute",
-            width: "50%",
-            left: "75%",
-            transform: "translateX(-50%)",
-            top: isTopPosition ? "20px" : "50%",
-            marginTop: isTopPosition ? "0" : "-1.5em",
-            transition: "all 0.3s ease",
-            zIndex: 1000,
-            background: "#fff",
-            padding: "20px",
-            boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
-          }}
-        >
-          <form onSubmit={handleSubmit} className="form">
-            <input
-              type="text"
-              value={inputValue}
-              onChange={handleChange}
-              className="input"
+        {/* Right half - Content Container */}
+        <div className="col-6">
+          <div className="card h-100">
+            <div
+              className={`card-body d-flex ${
+                isTopPosition ? "" : "align-items-center justify-content-center"
+              }`}
               style={{
-                width: "100%",
-                padding: "8px",
-              }}
-            />
-            <button
-              type="submit"
-              className="submit-button"
-              style={{
-                marginTop: "10px",
-                width: "100%",
+                position: isTopPosition ? "absolute" : "relative",
+                top: isTopPosition ? "20px" : "unset",
+                left: isTopPosition ? "50%" : "unset",
+                transform: isTopPosition ? "translateX(-50%)" : "unset",
+                width: isTopPosition ? "100%" : "unset",
+                zIndex: isTopPosition ? 1000 : "unset",
               }}
             >
-              Submit
-            </button>
-          </form>
+              <form
+                onSubmit={handleSubmit}
+                className={isTopPosition ? "w-100" : "w-50"}
+                style={{
+                  display: "flex",
+                  gap: "10px",
+                  alignItems: "center",
+                  padding: isTopPosition ? "10px" : "unset",
+                  boxShadow: isTopPosition
+                    ? "0 2px 4px rgba(0,0,0,0.2)"
+                    : "unset",
+                  background: isTopPosition ? "#fff" : "unset",
+                }}
+              >
+                <input
+                  type="text"
+                  value={inputValue}
+                  onChange={handleChange}
+                  className="form-control"
+                  placeholder="Enter value"
+                  style={{ flexGrow: 1 }}
+                />
+                <button type="submit" className="btn btn-primary">
+                  Submit
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </div>
