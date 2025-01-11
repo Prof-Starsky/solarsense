@@ -14,7 +14,7 @@ export const App = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    setInputValue(""); // Add this line to clear the input
+    setInputValue("");
     setShowMap(true);
     setIsTopPosition(true);
     setTimeout(() => {
@@ -56,7 +56,7 @@ export const App = () => {
         display: "flex",
         width: "100%",
         height: "100vh",
-        overflow: "hidden", // Prevent any potential scrolling
+        overflow: "hidden",
       }}
     >
       {/* Left half - Map Container */}
@@ -65,7 +65,7 @@ export const App = () => {
         style={{
           width: "50%",
           height: "100%",
-          borderRight: "1px solid #ccc", // Optional: adds visual separation
+          borderRight: "1px solid #ccc",
         }}
       >
         {showMap && (
@@ -75,7 +75,7 @@ export const App = () => {
               width: "100%",
               height: "100%",
               border: "none",
-              display: "block", // Prevents any extra space
+              display: "block",
             }}
             title="map"
           />
@@ -88,20 +88,23 @@ export const App = () => {
         style={{
           width: "50%",
           height: "100%",
-          position: "relative", // Container for absolute positioning
+          position: "relative",
         }}
       >
         <div
           className="form-container"
           style={{
-            position: isTopPosition ? "absolute" : "relative",
-            top: isTopPosition ? "20px" : "auto",
-            left: isTopPosition ? "50%" : "auto",
-            transform: isTopPosition ? "translateX(-50%)" : "none",
-            zIndex: isTopPosition ? 1000 : "auto",
-            background: isTopPosition ? "#fff" : "transparent",
+            position: "absolute",
+            width: "50%",
+            left: "75%",
+            transform: "translateX(-50%)",
+            top: isTopPosition ? "20px" : "50%",
+            marginTop: isTopPosition ? "0" : "-1.5em",
+            transition: "all 0.3s ease",
+            zIndex: 1000,
+            background: "#fff",
             padding: "20px",
-            boxShadow: isTopPosition ? "0 2px 4px rgba(0,0,0,0.1)" : "none",
+            boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
           }}
         >
           <form onSubmit={handleSubmit} className="form">
@@ -110,8 +113,19 @@ export const App = () => {
               value={inputValue}
               onChange={handleChange}
               className="input"
+              style={{
+                width: "100%",
+                padding: "8px",
+              }}
             />
-            <button type="submit" className="submit-button">
+            <button
+              type="submit"
+              className="submit-button"
+              style={{
+                marginTop: "10px",
+                width: "100%",
+              }}
+            >
               Submit
             </button>
           </form>

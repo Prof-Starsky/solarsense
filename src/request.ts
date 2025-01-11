@@ -6,10 +6,19 @@ async function getWeatherData(lat: string, long: string): Promise<Array<WeatherA
     const url = "https://archive-api.open-meteo.com/v1/archive";
 
     const formatDate = (date: Date): string => {
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const day = String(date.getDate()).padStart(2, '0');
-        return `${year}-${month}-${day}`;
+        // Clone the date to avoid mutating the original date
+        const newDate = new Date(date);
+        
+        // Subtract two days
+        const day = newDate.getDate();
+        newDate.setDate(day - 2);
+        
+        // Variables for year, month, and day (one-based index for the day)
+        const year = newDate.getFullYear();
+        const month = String(newDate.getMonth() + 1).padStart(2, '0'); // Month is zero-based
+        const formattedDay = String(newDate.getDate()).padStart(2, '0'); // Date automatically handles month rollover
+        
+        return `${year}-${month}-${formattedDay}`;
     };
 
     const calculateAverages = (data: { shortwave_radiation_sum: number[], sunshine_duration: number[] }): WeatherAverages => {
