@@ -34,6 +34,7 @@ async function getWeatherData(lat: string, long: string): Promise<Array<WeatherA
         const now = new Date();
         const oneYearAgo = new Date(now);
         oneYearAgo.setFullYear(now.getFullYear() - 1);
+       
 
         const sixMonthsAgo = new Date(now);
         sixMonthsAgo.setMonth(now.getMonth() - 6);
@@ -43,6 +44,7 @@ async function getWeatherData(lat: string, long: string): Promise<Array<WeatherA
 
         const oneWeekAgo = new Date(now);
         oneWeekAgo.setDate(now.getDate() - 7);
+        
 
         const oneYearData = await fetchDataForPeriod(formatDate(oneYearAgo), formatDate(now));
         const sixMonthsData = await fetchDataForPeriod(formatDate(sixMonthsAgo), formatDate(now));
@@ -53,6 +55,10 @@ async function getWeatherData(lat: string, long: string): Promise<Array<WeatherA
         const sixMonthsAverages = calculateAverages(sixMonthsData);
         const oneMonthAverages = calculateAverages(oneMonthData);
         const oneWeekAverages = calculateAverages(oneWeekData);
+        console.log(oneMonthAgo);
+        console.log(sixMonthsAgo);
+        console.log(oneWeekAgo); 
+        console.log(oneYearAgo);
 
         return [oneYearAverages, sixMonthsAverages, oneMonthAverages, oneWeekAverages];
     } catch (error) {

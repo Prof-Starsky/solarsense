@@ -14,6 +14,7 @@ export const App = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+    setInputValue(""); // Add this line to clear the input
     setShowMap(true);
     setIsTopPosition(true);
     setTimeout(() => {
