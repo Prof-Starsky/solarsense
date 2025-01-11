@@ -2,6 +2,7 @@ import { useState } from "react";
 
 export const App = () => {
   const [inputValue, setInputValue] = useState("");
+  const [showMap, setShowMap] = useState(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
@@ -9,56 +10,43 @@ export const App = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    // Here you can process the data however you need
-    // For example, you could:
-    console.log(inputValue); // Log to console
-    // Or return it as part of an API call
-    // Or pass it to a parent component via props
-    // Or dispatch it to a state management system
-    setInputValue(""); // Clear the input after submission
+    console.log(inputValue);
+    setShowMap(true);
   };
 
   return (
     <div
-      style={{
-        display: "flex",
-        height: "100vh",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
+      className="container"
+      style={{ display: "flex", width: "100%", height: "100vh" }}
     >
-      <form
-        onSubmit={handleSubmit}
-        style={{
-          display: "flex",
-          gap: "10px",
-        }}
-      >
-        <input
-          type="text"
-          value={inputValue}
-          onChange={handleChange}
-          style={{
-            padding: "8px",
-            fontSize: "16px",
-            borderRadius: "4px",
-            border: "1px solid #ccc",
-          }}
-        />
-        <button
-          type="submit"
-          style={{
-            padding: "8px 16px",
-            fontSize: "16px",
-            borderRadius: "4px",
-            border: "1px solid #ccc",
-            backgroundColor: "#f0f0f0",
-            cursor: "pointer",
-          }}
-        >
-          Submit
-        </button>
-      </form>
+      <div className="form-container" style={{ flex: 1, padding: "20px" }}>
+        <form onSubmit={handleSubmit} className="form">
+          <input
+            type="text"
+            value={inputValue}
+            onChange={handleChange}
+            className="input"
+          />
+          <button type="submit" className="submit-button">
+            Submit
+          </button>
+        </form>
+      </div>
+      <div className="map-container" style={{ flex: 1 }}>
+        {showMap && (
+          <iframe
+            src="/maps.html"
+            style={{
+              width: "100%",
+              height: "100%",
+              border: "none",
+            }}
+            title="map"
+          />
+        )}
+      </div>
     </div>
   );
 };
+
+export default App;
