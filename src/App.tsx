@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 export const App = () => {
   const [inputValue, setInputValue] = useState("");
-  const [showMap, setShowMap] = useState(false);
+  const [showMap, setShowMap] = useState(true);
   const [isTopPosition, setIsTopPosition] = useState(false);
   let lat = "";
   let long = "";
