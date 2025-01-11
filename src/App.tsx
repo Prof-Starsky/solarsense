@@ -5,9 +5,32 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 export const App = () => {
   const [inputValue, setInputValue] = useState("");
-  const [showMap, setShowMap] = useState(true); // Changed to true by default
+  const [showMap, setShowMap] = useState(true);
   const [showCards, setShowCards] = useState(false);
   const [isTopPosition, setIsTopPosition] = useState(false);
+  const [cardsContent] = useState([
+    {
+      title: "Solar Panel System",
+      text: "High-efficiency solar panels with 400W output per panel. Ideal for residential installations.",
+    },
+    {
+      title: "Battery Storage",
+      text: "13.5 kWh Powerwall battery system for energy storage. Perfect for night-time power needs.",
+    },
+    {
+      title: "Inverter System",
+      text: "Smart inverter with 98% efficiency rating. Converts DC to AC power seamlessly.",
+    },
+    {
+      title: "Installation Package",
+      text: "Professional installation by certified technicians. Includes permits and inspections.",
+    },
+    {
+      title: "Monitoring System",
+      text: "Real-time energy production and consumption monitoring via smartphone app.",
+    },
+  ]);
+
   let lat = "";
   let long = "";
 
@@ -48,25 +71,6 @@ export const App = () => {
     return response;
   };
 
-
-  // Add this useEffect to set initial map location
-  useEffect(() => {
-    if (showMap) {
-      setTimeout(() => {
-        const mapFrame = document.querySelector("iframe");
-        if (mapFrame && mapFrame.contentWindow) {
-          mapFrame.contentWindow.postMessage(
-            {
-              type: "SET_INITIAL_LOCATION",
-              lat: 51.5074, // London latitude
-              lng: -0.1278, // London longitude
-            },
-            "*"
-          );
-        }
-      }, 100);
-    }
-  }, [showMap]);
 
   useEffect(() => {
     const handleMessage = async (event: MessageEvent) => {
@@ -152,7 +156,7 @@ export const App = () => {
                     value={inputValue}
                     onChange={handleChange}
                     className="form-control"
-                    placeholder="Enter value"
+                    placeholder="Enter address"
                     style={{ flexGrow: 1 }}
                   />
                   <button type="submit" className="btn btn-primary">
@@ -164,12 +168,12 @@ export const App = () => {
               {/* Cards that appear after submit */}
               {showCards && (
                 <div className="row g-3">
-                  {[1, 2, 3, 4, 5].map((index) => (
+                  {cardsContent.map((card, index) => (
                     <div key={index} className="col-12">
                       <div className="card">
                         <div className="card-body">
-                          <h5 className="card-title">Card {index}</h5>
-                          <p className="card-text">Content for card {index}</p>
+                          <h5 className="card-title">{card.title}</h5>
+                          <p className="card-text">{card.text}</p>
                         </div>
                       </div>
                     </div>
