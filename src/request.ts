@@ -64,10 +64,10 @@ async function getWeatherData(lat: string, long: string): Promise<Array<WeatherA
         const sixMonthsAverages = calculateAverages(sixMonthsData);
         const oneMonthAverages = calculateAverages(oneMonthData);
         const oneWeekAverages = calculateAverages(oneWeekData);
-        console.log(oneMonthAgo);
-        console.log(sixMonthsAgo);
-        console.log(oneWeekAgo); 
-        console.log(oneYearAgo);
+        console.log(formatDate(oneMonthAgo));
+        console.log(formatDate(sixMonthsAgo));
+        console.log(formatDate(oneWeekAgo)); 
+        console.log(formatDate(oneYearAgo));
 
         return [oneYearAverages, sixMonthsAverages, oneMonthAverages, oneWeekAverages];
     } catch (error) {
