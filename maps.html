@@ -73,6 +73,7 @@
                 marker.setPosition(results[0].geometry.location);
                 marker.setMap(map);
                 response.innerText = JSON.stringify(result, null, 2);
+                console.log(result.results[0].geometry.location.lat(), result.results[0].geometry.location.lng());
             }).catch((e) => {
                 alert("Geocode was not successful: " + e);
             });

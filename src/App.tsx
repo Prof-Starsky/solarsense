@@ -11,7 +11,6 @@ export const App = () => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     setShowMap(true);
-    // Send message to iframe after a short delay to ensure it's loaded
     setTimeout(() => {
       const mapFrame = document.querySelector("iframe");
       if (mapFrame && mapFrame.contentWindow) {
@@ -29,7 +28,12 @@ export const App = () => {
   return (
     <div
       className="container"
-      style={{ display: "flex", width: "100%", height: "100vh" }}
+      style={{
+        display: "flex",
+        flexDirection: "row-reverse",
+        width: "100%",
+        height: "100vh",
+      }}
     >
       <div className="form-container" style={{ flex: 1, padding: "20px" }}>
         <form onSubmit={handleSubmit} className="form">
