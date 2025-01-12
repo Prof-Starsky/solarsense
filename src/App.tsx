@@ -215,7 +215,9 @@ export const App = () => {
         height: "100vh",
         overflow: "hidden",
         padding: "20px",
-        background: "#009CD1",
+        backgroundImage: "url('/public/warpgrid2.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
       }}
     >
       <div className="row h-100">
@@ -226,7 +228,7 @@ export const App = () => {
             style={{
               height: "30%",
               marginBottom: "20px",
-              backgroundColor: "#20AF24",
+              backgroundColor: "#b6f2f2",
             }}
           >
             <img
