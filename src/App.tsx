@@ -158,7 +158,6 @@ export const App = () => {
       },
     ]);
 
-
     setInputValue2("");
     setInputValue("");
     setInputValue2("");
@@ -244,25 +243,24 @@ export const App = () => {
       }}
     >
       <div className="row h-30">
-      <div
-            className="card"
-            style={{
-              height: "30%",
-              marginBottom: "20px",
-              backgroundColor: "#b6f2f2",
-            }}
-          >
-            <img
-              src="/public/download.png"
-              alt="logo"
-              style={{ height: "100%" }}
-            />
-          </div>
+        <div
+          className="card"
+          style={{
+            height: "30%",
+            marginBottom: "20px",
+            backgroundColor: "#b6f2f2",
+          }}
+        >
+          <img
+            src="/public/download.png"
+            alt="logo"
+            style={{ height: "100%" }}
+          />
+        </div>
       </div>
       <div className="row h-100">
         {/* Left half - Map Container */}
         <div className="col-6">
-
           <div className="card" style={{ height: "66%", marginBottom: "20px" }}>
             <div className="card-body" style={{ position: "relative" }}>
               <iframe
@@ -375,26 +373,45 @@ export const App = () => {
                       </div>
                     ))}
                   </div>
-                  <h3 style={{fontSize: "2rem", marginTop: "2rem", marginLeft: "5px"}}>Earnings After:</h3>
+                  <h3
+                    style={{
+                      fontSize: "2rem",
+                      marginTop: "2rem",
+                      marginLeft: "5px",
+                    }}
+                  >
+                    Earnings After:
+                  </h3>
 
                   {/* New section with 3 cards side-by-side */}
                   <div className="row g-3 mt-2">
                     {profitData.map((card) => (
                       <div className="col-md-4" style={{ height: "150px" }}>
-                      <div className="card h-100">
-                        <div className="card-body">
-                          <h5
-                            className="card-title"
-                            style={{ fontSize: "1.5rem" }}
-                          >
-                            {card.title}
-                          </h5>
-                          <h5 className="card-title">{card.text}</h5>
+                        <div className="card h-100">
+                          <div className="card-body">
+                            <h5
+                              className="card-title"
+                              style={{
+                                fontSize: "1.5rem",
+                                alignContent: "center",
+                              }}
+                            >
+                              {card.title}
+                            </h5>
+                            <h5
+                              className="card-title"
+                              style={{
+                                fontSize: "1.5rem",
+                                alignContent: "center",
+                              }}
+                            >
+                              {card.text}
+                            </h5>
+                          </div>
                         </div>
                       </div>
-                    </div>
                     ))}
-                    
+
                     {/* <div className="col-md-4" style={{ height: "150px" }}>
                       <div className="card h-100">
                         <div className="card-body">
