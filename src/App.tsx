@@ -11,6 +11,12 @@ export const App = () => {
   const [isTopPosition, setIsTopPosition] = useState(true);
   //const [isSqft, setIsSqft] = useState(0);
   const [inputValue2, setInputValue2] = useState("");
+  const [co2Save, setco2Save] = useState([
+    {
+      title: "How much CO2 saved:",
+      text: "",
+    },
+  ]);
 
   // Add state for responses
   const [responses, setResponses] = useState({
@@ -96,6 +102,8 @@ export const App = () => {
     const kwhNum = extractNumber(kwhResponse);
     console.log(responses);
     console.log(engResponseNum, costResNum, maintResNum, kwhNum);
+    const totalCo2Save = (engResponseNum * 0.6 * isSqft).toFixed(2);
+
     const amtSaved = Number(
       (
         (engResponseNum * kwhNum * 5 - (maintResNum * 5 + costResNum)) *
@@ -114,6 +122,13 @@ export const App = () => {
         isSqft
       ).toFixed(2)
     );
+
+    setco2Save([
+      {
+        title: `By using Solar Panels, you would save ${totalCo2Save} total kilograms of CO2`,
+        text: "",
+      },
+    ]);
 
     // Update cards content with new responses
     setCardsContent([
@@ -278,12 +293,14 @@ export const App = () => {
                 margin: "20px",
               }}
             >
-              <div className="card-body">
-                <h5 className="card-title" style={{ fontSize: "1.5rem" }}>
-                  By getting solar panels, you would prevent {} litres of CO2
-                </h5>
-                <p className="card-text" style={{ fontSize: "1rem" }}></p>
-              </div>
+              {co2Save.map((card) => (
+                <div className="card-body">
+                  <h5 className="card-title" style={{ fontSize: "1.5rem" }}>
+                    {card.title}
+                  </h5>
+                  <p className="card-text" style={{ fontSize: "1rem" }}></p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
