@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { getWeatherData } from "./request.ts";
 import { chatWithCohere } from "./cohere.ts";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { title } from "process";
+import { text } from "stream/consumers";
 
 export const App = () => {
   const [inputValue, setInputValue] = useState("");
@@ -21,6 +23,21 @@ export const App = () => {
 
   // dummy stuff to stop it from fucking erroring im gonna crash out
 
+  const [profitData, setProfitData] = useState([
+    {
+      title: "5 Years",
+      text: "",
+    },
+    {
+      title: "10 Years",
+      text: "",
+    },
+    {
+      title: "25 Years",
+      text: "",
+    },
+  ]);
+
   // Update cardsContent to be dependent on responses
   const [cardsContent, setCardsContent] = useState([
     {
@@ -37,10 +54,6 @@ export const App = () => {
     },
     {
       title: "Installation and Maintenance Cost:",
-      text: "",
-    },
-    {
-      title: "Profitability:",
       text: "",
     },
   ]);
@@ -128,12 +141,23 @@ export const App = () => {
         } per year to maintain them.`,
         text: "",
       },
+    ]);
+
+    setProfitData([
       {
-        title: `So, if you build solar panels, you should expect to earn: $${amtSaved} after five years\n
-        , $${amtSaved2} after 10 years, and $${amtSaved3} after 25 years`,
-        text: "",
+        title: "5 Years",
+        text: `$${amtSaved}`,
+      },
+      {
+        title: "10 Years",
+        text: `$${amtSaved2}`,
+      },
+      {
+        title: "25 Years",
+        text: `$${amtSaved3}`,
       },
     ]);
+
 
     setInputValue2("");
     setInputValue("");
@@ -219,20 +243,26 @@ export const App = () => {
         backgroundPosition: "center",
       }}
     >
-      {" "}
+      <div className="row h-30">
       <div
-        className="card"
-        style={{
-          height: "40%",
-          marginBottom: "20px",
-          backgroundColor: "#b6f2f2",
-        }}
-      >
-        <img src="/public/download.png" alt="logo" style={{ height: "100%" }} />
+            className="card"
+            style={{
+              height: "30%",
+              marginBottom: "20px",
+              backgroundColor: "#b6f2f2",
+            }}
+          >
+            <img
+              src="/public/download.png"
+              alt="logo"
+              style={{ height: "100%" }}
+            />
+          </div>
       </div>
       <div className="row h-100">
         {/* Left half - Map Container */}
         <div className="col-6">
+
           <div className="card" style={{ height: "66%", marginBottom: "20px" }}>
             <div className="card-body" style={{ position: "relative" }}>
               <iframe
@@ -344,6 +374,53 @@ export const App = () => {
                         </div>
                       </div>
                     ))}
+                  </div>
+                  <h3 style={{fontSize: "2rem", marginTop: "2rem", marginLeft: "5px"}}>Earnings After:</h3>
+
+                  {/* New section with 3 cards side-by-side */}
+                  <div className="row g-3 mt-2">
+                    {profitData.map((card) => (
+                      <div className="col-md-4" style={{ height: "150px" }}>
+                      <div className="card h-100">
+                        <div className="card-body">
+                          <h5
+                            className="card-title"
+                            style={{ fontSize: "1.5rem" }}
+                          >
+                            {card.title}
+                          </h5>
+                          <h5 className="card-title">{card.text}</h5>
+                        </div>
+                      </div>
+                    </div>
+                    ))}
+                    
+                    {/* <div className="col-md-4" style={{ height: "150px" }}>
+                      <div className="card h-100">
+                        <div className="card-body">
+                          <h5
+                            className="card-title"
+                            style={{ fontSize: "1.3rem" }}
+                          >
+                            10 Years
+                          </h5>
+                          <p className="card-text"></p>
+                        </div>
+                      </div>
+                    </div> */}
+                    {/* <div className="col-md-4" style={{ height: "150px" }}>
+                      <div className="card h-100">
+                        <div className="card-body">
+                          <h5
+                            className="card-title"
+                            style={{ fontSize: "1.3rem" }}
+                          >
+                            25 Years
+                          </h5>
+                          <p className="card-text">{}</p>
+                        </div>
+                      </div>
+                    </div> */}
                   </div>
                 </>
               )}
