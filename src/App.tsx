@@ -117,7 +117,7 @@ export const App = () => {
   };
   const engPerYear = async (address: string) => {
     const response5 = await chatWithCohere(
-      `How many kwh are generated per square foot per yeah of Solar panels with the amount of sunlight from ${address}?. Respond in the exact format: With solar panels, you would generate 'answer' kwh of energy per square foot per year `
+      `How many kwh are generated per square foot per year of Solar panels with the amount of sunlight from ${address}?. Max number of kwh generated is 10 kwh per square foot per year. Respond in the exact format: With solar panels, you would generate 'answer' kwh of energy per square foot per year `
     );
     return response5;
   };
@@ -129,13 +129,13 @@ export const App = () => {
   };
   const costPerYear = async (address: string) => {
     const response2 = await chatWithCohere(
-      `What is the dollar cost per square foot to install Solars panels at ${address}? Respond in the exact format: It costs $'answer' per square foot to install Solar panels and`
+      `What is the dollar cost per square foot to install Solars panels at ${address} based on local prices? The min cost is $4 per square foot. Respond in the exact format: It costs $'answer' per square foot to install Solar panels.`
     );
     return response2;
   };
   const maintPerYear = async (address: string) => {
     const response3 = await chatWithCohere(
-      `What is the dollar cost per square foot to maintain Solars panels at ${address}. The min cost is $0.5 per square foot Respond in the exact format: ' it costs $'answer' per square foot per year to maintain them.`
+      `What is the dollar cost per square foot to maintain Solars panels at ${address}. The min cost is $0.05 per square foot. Respond in the exact format: ' It costs $'answer' per square foot per year to maintain them.`
     );
     return response3;
   };
