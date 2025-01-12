@@ -287,6 +287,7 @@ export const App = () => {
             <div
               className="card"
               style={{
+                display: "flex",
                 height: "30%",
                 backgroundColor: "#f2f2f2",
                 padding: "10px",
@@ -294,11 +295,10 @@ export const App = () => {
               }}
             >
               {co2Save.map((card) => (
-                <div className="card-body">
-                  <h5 className="card-title" style={{ fontSize: "1.5rem" }}>
+                <div className="card-body" style={{ alignItems: "center", justifyContent: "center", display: "flex" }}>
+                  <h5 className="card-title text-center" style={{ fontSize: "3rem", textAlign: "center" }}>
                     {card.title}
                   </h5>
-                  <p className="card-text" style={{ fontSize: "1rem" }}></p>
                 </div>
               ))}
             </div>
@@ -402,7 +402,7 @@ export const App = () => {
                         <div className="card h-100">
                           <div className="card-body">
                             <h5
-                              className="card-title"
+                              className="card-title text-center"
                               style={{
                                 fontSize: "2.0rem",
                                 alignContent: "center",
@@ -411,7 +411,7 @@ export const App = () => {
                               {card.title}
                             </h5>
                             <h5
-                              className="card-title"
+                              className="card-title text-center"
                               style={{
                                 fontSize: "2.0rem",
                                 alignContent: "center",
