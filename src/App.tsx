@@ -204,7 +204,7 @@ export const App = () => {
   };
   const engPerYear = async (address: string) => {
     const response5 = await chatWithCohere(
-      `How many kwh are generated per square foot per year of Solar panels with the amount of sunlight from ${address}?. More sunlight = more kwh generated. Max number of kwh generated is 10 kwh per square foot per year. Respond in the exact format: With solar panels, you would generate 'answer' kwh of energy per square foot per year `
+      `How many kwh are generated per square foot per year of Solar panels with the amount of sunlight from ${address}?. More sunlight = more kwh generated. Max number of kwh generated is 10 kwh per square foot per year, min number of kwh generated is 1.07 kwh per square foot per year. Respond in the exact format: With solar panels, you would generate 'answer' kwh of energy per square foot per year `
     );
     return response5;
   };
