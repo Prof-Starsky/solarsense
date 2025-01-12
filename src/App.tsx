@@ -5,7 +5,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 export const App = () => {
   const [inputValue, setInputValue] = useState("");
-  const [showMap, setShowMap] = useState(true);
   const [showCards, setShowCards] = useState(false);
   const [isTopPosition, setIsTopPosition] = useState(false);
 
@@ -19,9 +18,6 @@ export const App = () => {
   });
 
   // dummy stuff to stop it from fucking erroring im gonna crash out
-  if (responses == responses || setShowMap == setShowMap) {
-    console.log("Execution successful!");
-  }
 
   // Update cardsContent to be dependent on responses
   const [cardsContent, setCardsContent] = useState([
@@ -77,6 +73,7 @@ export const App = () => {
     const costResNum = extractNumber(costResponse);
     const maintResNum = extractNumber(maintResponse);
     const kwhNum = extractNumber(kwhResponse);
+    console.log(responses);
     const amtSaved = Number(
       (engResponseNum * kwhNum * 5 - (maintResNum * 5 + costResNum)).toFixed(2)
     );
@@ -199,9 +196,8 @@ export const App = () => {
         <div className="col-6">
           <div className="card h-100">
             <div className="card-body" style={{ position: "relative" }}>
-              {showMap && (
                 <iframe
-                  src="/maps.html"
+                  src="../maps.html"
                   style={{
                     width: "100%",
                     height: "100%",
@@ -210,7 +206,6 @@ export const App = () => {
                   }}
                   title="map"
                 />
-              )}
             </div>
           </div>
         </div>
