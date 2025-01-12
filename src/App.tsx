@@ -56,7 +56,6 @@ export const App = () => {
     setInputValue2(event.target.value);
   };
 
-
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     console.log(inputValue2);
@@ -86,17 +85,22 @@ export const App = () => {
     console.log(responses);
     console.log(engResponseNum, costResNum, maintResNum, kwhNum);
     const amtSaved = Number(
-      ((engResponseNum * kwhNum * 5 - (maintResNum * 5 + costResNum))*isSqft).toFixed(2)
+      (
+        (engResponseNum * kwhNum * 5 - (maintResNum * 5 + costResNum)) *
+        isSqft
+      ).toFixed(2)
     );
     const amtSaved2 = Number(
-      ((engResponseNum * kwhNum * 10 - (maintResNum * 10 + costResNum))*isSqft).toFixed(
-        2
-      )
+      (
+        (engResponseNum * kwhNum * 10 - (maintResNum * 10 + costResNum)) *
+        isSqft
+      ).toFixed(2)
     );
     const amtSaved3 = Number(
-      ((engResponseNum * kwhNum * 25 - (maintResNum * 25 + costResNum))*isSqft).toFixed(
-        2
-      )
+      (
+        (engResponseNum * kwhNum * 25 - (maintResNum * 25 + costResNum)) *
+        isSqft
+      ).toFixed(2)
     );
 
     // Update cards content with new responses
@@ -106,7 +110,9 @@ export const App = () => {
         text: "",
       },
       {
-        title: engResponse,
+        title: `With solar panels, you would generate ${
+          engResponseNum * isSqft
+        } kwh of energy per year`,
         text: "",
       },
       {
@@ -126,6 +132,7 @@ export const App = () => {
 
     setInputValue2("");
     setInputValue("");
+    setInputValue2("");
     setShowCards(true);
     setIsTopPosition(true);
     setTimeout(() => {
@@ -287,12 +294,15 @@ export const App = () => {
                     placeholder="Enter address"
                     style={{ flexGrow: 1, width: "50%" }}
                   />
-                  
-                  <button type="submit" className="btn btn-primary" style={{width: "20%"}}>
+
+                  <button
+                    type="submit"
+                    className="btn btn-primary"
+                    style={{ width: "20%" }}
+                  >
                     Submit
                   </button>
                 </form>
-                
               </div>
 
               {/* Cards that appear after submit */}
