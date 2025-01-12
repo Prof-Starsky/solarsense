@@ -1,6 +1,17 @@
 import { CohereClientV2 } from 'cohere-ai';
 
-const API_KEY: string = "zLeAodVVy5MSQ5Q8b2yPQM7D0GcKvnq3kbdKChy8";
+const API_KEY: string = "MXglJacSeIUEAqSc1Cp56yl62cmE4UwQXNiE2jmi";
+
+// const API_LIST: Array<string> = [
+//     "MXglJacSeIUEAqSc1Cp56yl62cmE4UwQXNiE2jmi"
+//     // "NsEPajXraFiPuUL0JQ39dO6Yc0p6VbzTAc8gZa4I",
+
+//     // "tjB3G8euaxhBNRtKNTKED0g7MlwniWGBkpaV0Zpn",
+//     // "L9L55UvMeobWFY3VbWVRei7xQ60pPGEzKi5JiKLc"
+// ];
+
+// let x: number = 0;
+// let API_KEY: string = API_LIST[0];
 
 const cohere = new CohereClientV2({
     token: API_KEY
@@ -8,7 +19,7 @@ const cohere = new CohereClientV2({
 
 export async function chatWithCohere(message: string): Promise<string> {
     const stream = await cohere.chat({
-        model: 'command-r7b-12-2024',
+        model: 'command-r-08-2024',
         messages: [
             {
                 role: 'system',
