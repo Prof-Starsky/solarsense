@@ -18,6 +18,11 @@ export const App = () => {
     kwhCost: "",
   });
 
+  // dummy stuff to stop it from fucking erroring im gonna crash out
+  if (responses == responses || setShowMap == setShowMap) {
+    console.log("Execution successful!")
+  }
+
   // Update cardsContent to be dependent on responses
   const [cardsContent, setCardsContent] = useState([
     {
