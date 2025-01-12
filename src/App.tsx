@@ -3,7 +3,7 @@ import { getWeatherData } from "./request.ts";
 import { chatWithCohere } from "./cohere.ts";
 import "bootstrap/dist/css/bootstrap.min.css";
 // import { title } from "process";
-// import { text } from "stream/consumers";
+// import { text } from "stream/consumers"
 
 export const App = () => {
   const [inputValue, setInputValue] = useState("");
