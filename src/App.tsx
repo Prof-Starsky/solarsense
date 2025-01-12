@@ -107,9 +107,12 @@ export const App = () => {
         text: "",
       },
       {
-        title: `$${amtSaved}, $${amtSaved2}, $${amtSaved3}`,
+        title: `So, if you build solar panels, you should expect to earn: `,
         text: "",
       },
+
+      //$${amtSaved} per square foot after five years\n
+      // , $${amtSaved2} per square foot after 10 years, and $${amtSaved3} per square foot after 25 years`,
     ]);
 
     setInputValue("");
@@ -130,7 +133,7 @@ export const App = () => {
   };
   const extractNumber = (response: string): number => {
     const match = response.match(/(?<!\w\s)(?<!\w)(\d{1,3}(,\d{3})*(\.\d+)?)/);
-    return match ? parseFloat(match[0].replace(/,/g, '')) : 0;
+    return match ? parseFloat(match[0].replace(/,/g, "")) : 0;
   };
 
   const sunPerYear = async (address: string) => {
@@ -196,16 +199,16 @@ export const App = () => {
         <div className="col-6">
           <div className="card h-100">
             <div className="card-body" style={{ position: "relative" }}>
-                <iframe
-                  src="../maps.html"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    border: "none",
-                    display: "block",
-                  }}
-                  title="map"
-                />
+              <iframe
+                src="../maps.html"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  border: "none",
+                  display: "block",
+                }}
+                title="map"
+              />
             </div>
           </div>
         </div>
