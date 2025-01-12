@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { getWeatherData } from "./request.ts";
 import { chatWithCohere } from "./cohere.ts";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { number, set } from "cohere-ai/core/schemas/index";
 
 export const App = () => {
   const [inputValue, setInputValue] = useState("");
@@ -336,7 +335,7 @@ export const App = () => {
 
                   {/* New section with 3 cards side-by-side */}
                   <div className="row g-3 mt-4">
-                    <div className="col-md-4" style={{ height: "200px" }}>
+                    <div className="col-md-4" style={{ height: "150px" }}>
                       <div className="card h-100">
                         <div className="card-body">
                           <h5
@@ -349,7 +348,7 @@ export const App = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="col-md-4" style={{ height: "200px" }}>
+                    <div className="col-md-4" style={{ height: "150px" }}>
                       <div className="card h-100">
                         <div className="card-body">
                           <h5
@@ -362,7 +361,7 @@ export const App = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="col-md-4" style={{ height: "200px" }}>
+                    <div className="col-md-4" style={{ height: "150px" }}>
                       <div className="card h-100">
                         <div className="card-body">
                           <h5
