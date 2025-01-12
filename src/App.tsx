@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { getWeatherData } from "./request.ts";
 import { chatWithCohere } from "./cohere.ts";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { title } from "process";
-import { text } from "stream/consumers";
+// import { title } from "process";
+// import { text } from "stream/consumers";
 
 export const App = () => {
   const [inputValue, setInputValue] = useState("");
@@ -237,31 +237,21 @@ export const App = () => {
         height: "100vh",
         overflow: "auto",
         padding: "20px",
-        backgroundImage: "url('/public/warpgrid2.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
+        background: "#26282a",
       }}
     >
       <div className="row h-30">
-        <div
-          className="card"
-          style={{
-            height: "30%",
-            marginBottom: "20px",
-            backgroundColor: "#b6f2f2",
-          }}
-        >
-          <img
-            src="/public/download.png"
-            alt="logo"
-            style={{ height: "100%" }}
-          />
-        </div>
+            <img
+              className="img-fluid"
+              src="/public/Bckg2.png"
+              alt="logo"
+              style={{ height: "50%", borderRadius: "10px", marginBottom: "20px" }}
+            />
       </div>
       <div className="row h-100">
         {/* Left half - Map Container */}
         <div className="col-6">
-          <div className="card" style={{ height: "66%", marginBottom: "20px" }}>
+          <div className="card" style={{ height: "100%", backgroundColor: "#353739" }}>
             <div className="card-body" style={{ position: "relative" }}>
               <iframe
                 src="../maps.html"
@@ -297,7 +287,7 @@ export const App = () => {
 
         {/* Right half - Content Container */}
         <div className="col-6">
-          <div className="card h-100">
+          <div className="card h-100" style={{ backgroundColor: "#353739" }}>
             <div className="card-body d-flex flex-column">
               <div
                 className={`${
@@ -324,6 +314,7 @@ export const App = () => {
                       ? "0 2px 4px rgba(0,0,0,0.2)"
                       : "unset",
                     background: isTopPosition ? "#fff" : "unset",
+                    borderRadius: isTopPosition ? "10px" : "10px",
                   }}
                 >
                   <input
@@ -373,15 +364,7 @@ export const App = () => {
                       </div>
                     ))}
                   </div>
-                  <h3
-                    style={{
-                      fontSize: "2rem",
-                      marginTop: "2rem",
-                      marginLeft: "5px",
-                    }}
-                  >
-                    Earnings After:
-                  </h3>
+                  <h3 style={{fontSize: "2rem", marginTop: "2rem", marginLeft: "5px", color: "white"}}>Earnings After:</h3>
 
                   {/* New section with 3 cards side-by-side */}
                   <div className="row g-3 mt-2">
