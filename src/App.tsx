@@ -8,9 +8,19 @@ export const App = () => {
   const [showMap, setShowMap] = useState(true);
   const [showCards, setShowCards] = useState(false);
   const [isTopPosition, setIsTopPosition] = useState(false);
-  const [cardsContent] = useState([
+
+  // Add state for responses
+  const [responses, setResponses] = useState({
+    sunlight: "",
+    cost: "",
+    maintenance: "",
+    kwhCost: "",
+  });
+
+  // Update cardsContent to be dependent on responses
+  const [cardsContent, setCardsContent] = useState([
     {
-      title: "Sunlight hits your house for approximately: ",
+      title: "",
       text: "2002 hours every single year",
     },
     {
@@ -18,13 +28,11 @@ export const App = () => {
       text: "With solar panels, you would generate 274 kwh of energy per square foot per year",
     },
     {
-      title:
-        "It costs approximately $0.19 per kwh with the average home use being 10000 kwh/year",
+      title: "",
       text: "That means electricity costs $1920 minus $52.6 per square foot a year",
     },
     {
-      title:
-        "In your area, it costs about $12 per square foot to install solar panels",
+      title: "",
       text: "and it costs about $1 per square foot per year to maintain them",
     },
     {
@@ -40,19 +48,47 @@ export const App = () => {
     setInputValue(event.target.value);
   };
 
-  let response = "";
-  let response2 = "";
-  let response3 = "";
-  let response4 = "";
-
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    response2 = await costPerYear(inputValue);
-    response = await sunPerYear(inputValue);
-    response3 = await maintPerYear(inputValue);
-    response4 = await kwhPerYear(inputValue);
 
-    console.log(typeof response);
+    // Get all responses
+    const sunlightResponse = await sunPerYear(inputValue);
+    const costResponse = await costPerYear(inputValue);
+    const maintResponse = await maintPerYear(inputValue);
+    const kwhResponse = await kwhPerYear(inputValue);
+
+    // Update responses state
+    setResponses({
+      sunlight: sunlightResponse,
+      cost: costResponse,
+      maintenance: maintResponse,
+      kwhCost: kwhResponse,
+    });
+
+    // Update cards content with new responses
+    setCardsContent([
+      {
+        title: sunlightResponse,
+        text: "2002 hours every single year",
+      },
+      {
+        title: "Based on Solar Power Advancement and amount of sunlight",
+        text: "With solar panels, you would generate 274 kwh of energy per square foot per year",
+      },
+      {
+        title: `It costs approximately ${kwhResponse} per kwh with the average home use being 10000 kwh/year`,
+        text: "That means electricity costs $1920 minus $52.6 per square foot a year",
+      },
+      {
+        title: `In your area, it costs about ${costResponse} per square foot to install solar panels`,
+        text: `and it costs about ${maintResponse} per square foot per year to maintain them`,
+      },
+      {
+        title: "This results in a final yearly cost of ~$1920+$1/square ft",
+        text: "But in the same time frame you make $52/year",
+      },
+    ]);
+
     setInputValue("");
     setShowCards(true);
     setIsTopPosition(true);
@@ -72,7 +108,7 @@ export const App = () => {
 
   const sunPerYear = async (address: string) => {
     const response = await chatWithCohere(
-      `How many hours of sunlight does ${address} get per year? Give a concise answer`
+      `How many hours of sunlight does ${address} get per year? Give an reasonable and concise answer. Answer in hours per year`
     );
     return response;
   };
