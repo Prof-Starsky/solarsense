@@ -125,7 +125,7 @@ export const App = () => {
 
     setco2Save([
       {
-        title: `By using Solar Panels, you would save ${totalCo2Save} total kilograms of CO2`,
+        title: `By using Solar Panels, you would save ${totalCo2Save} kilograms of CO2 per year`,
         text: "",
       },
     ]);
