@@ -45,7 +45,6 @@ export const App = () => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     response = await sunPerYear(inputValue);
-    console.log(response);
     console.log(typeof response);
     setInputValue("");
     setShowCards(true);
@@ -68,14 +67,11 @@ export const App = () => {
     const response = await chatWithCohere(
       `How many hours of sunlight does ${address} get per year?`
     );
-    if (typeof response !== 'string') {
-      console.log('Response Object:', JSON.stringify(response, null, 2)); // Pretty-print JSON
-  } else {
-      console.log('Response String:', response); // Log the string response
-  }
+    if (typeof response !== "string") {
+      console.log("Response Object:", JSON.stringify(response, null, 2)); // Pretty-print JSON
+    }
     return response;
   };
-
 
   useEffect(() => {
     const handleMessage = async (event: MessageEvent) => {
