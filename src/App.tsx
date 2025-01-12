@@ -12,6 +12,7 @@ export const App = () => {
   // Add state for responses
   const [responses, setResponses] = useState({
     sunlight: "",
+    eng: "",
     cost: "",
     maintenance: "",
     kwhCost: "",
@@ -53,6 +54,7 @@ export const App = () => {
 
     // Get all responses
     const sunlightResponse = await sunPerYear(inputValue);
+    const engResponse = await engPerYear(inputValue);
     const costResponse = await costPerYear(inputValue);
     const maintResponse = await maintPerYear(inputValue);
     const kwhResponse = await kwhPerYear(inputValue);
@@ -60,6 +62,7 @@ export const App = () => {
     // Update responses state
     setResponses({
       sunlight: sunlightResponse,
+      eng: engResponse,
       cost: costResponse,
       maintenance: maintResponse,
       kwhCost: kwhResponse,
@@ -72,21 +75,20 @@ export const App = () => {
         text: "",
       },
       {
-        title:
-          "With solar panels, you would generate 274 kwh of energy per square foot per year",
+        title: engResponse,
         text: "",
       },
       {
-        title: `It costs approximately ${kwhResponse} per kwh with the average home use being 10000 kwh/year`,
-        text: "That means electricity costs $1920 minus $52.6 per square foot a year",
+        title: kwhResponse,
+        text: "",
       },
       {
-        title: `In your area, it costs about ${costResponse} per square foot to install solar panels`,
-        text: `and it costs about ${maintResponse} per square foot per year to maintain them`,
+        title: costResponse + maintResponse,
+        text: "",
       },
       {
         title: "This results in a final yearly cost of ~$1920+$1/square ft",
-        text: "But in the same time frame you make $52/year",
+        text: "",
       },
     ]);
 
@@ -109,27 +111,33 @@ export const App = () => {
 
   const sunPerYear = async (address: string) => {
     const response = await chatWithCohere(
-      `How many hours of sunlight does ${address} get per year? Give an reasonable and concise answer.`
+      `How many hours of sunlight does ${address} get per year? Give an reasonable and concise answer. Respond in the exact format: ${address} receives about 'answer' hours of sunshine per year.`
     );
     return response;
   };
+  const engPerYear = async (address: string) => {
+    const response5 = await chatWithCohere(
+      `How many kwh are generated per square foot per yeah of Solar panels with the amount of sunlight from ${address}?. Respond in the exact format: With solar panels, you would generate 'answer' kwh of energy per square foot per year `
+    );
+    return response5;
+  };
+  const kwhPerYear = async (address: string) => {
+    const response4 = await chatWithCohere(
+      `What is cost per kwh at ${address}? Respond in the exact format: The cost of electricity in ${address} is $'answer' per kwh.`
+    );
+    return response4;
+  };
   const costPerYear = async (address: string) => {
     const response2 = await chatWithCohere(
-      `What is the dollar cost per square foot to install Solars panels at ${address}, assume the most basic and cheapest solar panel. Give a concise answer`
+      `What is the dollar cost per square foot to install Solars panels at ${address}? Respond in the exact format: It costs $'answer' per square foot to install Solar panels and`
     );
     return response2;
   };
   const maintPerYear = async (address: string) => {
     const response3 = await chatWithCohere(
-      `What is the dollar cost per square foot to maintain Solars panels at ${address}, assume the most basic and cheapest solar panel. Give a concise answer`
+      `What is the dollar cost per square foot to maintain Solars panels at ${address}. The min cost is $0.5 per square foot Respond in the exact format: ' it costs $'answer' per square foot per year to maintain them.`
     );
     return response3;
-  };
-  const kwhPerYear = async (address: string) => {
-    const response4 = await chatWithCohere(
-      `What is cost per kwh at ${address}, guess to the best of your ability. Give you answers in dollars. Very concise answer`
-    );
-    return response4;
   };
 
   useEffect(() => {
