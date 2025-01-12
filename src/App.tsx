@@ -313,23 +313,68 @@ export const App = () => {
 
               {/* Cards that appear after submit */}
               {showCards && (
-                <div className="row g-3">
-                  {cardsContent.map((card, index) => (
-                    <div key={index} className="col-12">
-                      <div className="card">
+                <>
+                  <div className="row g-3">
+                    {cardsContent.map((card, index) => (
+                      <div key={index} className="col-12">
+                        <div className="card">
+                          <div className="card-body">
+                            <h5
+                              className="card-title"
+                              style={{ fontSize: "1.5rem" }}
+                            >
+                              {card.title}
+                            </h5>
+                            <p className="card-text">{card.text}</p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* New section with 3 cards side-by-side */}
+                  <div className="row g-3 mt-4">
+                    <div className="col-md-4" style={{ height: "200px" }}>
+                      <div className="card h-100">
                         <div className="card-body">
                           <h5
                             className="card-title"
-                            style={{ fontSize: "1.5rem" }}
+                            style={{ fontSize: "1.3rem" }}
                           >
-                            {card.title}
+                            5 Years
                           </h5>
-                          <p className="card-text">{card.text}</p>
+                          <p className="card-text"></p>
                         </div>
                       </div>
                     </div>
-                  ))}
-                </div>
+                    <div className="col-md-4" style={{ height: "200px" }}>
+                      <div className="card h-100">
+                        <div className="card-body">
+                          <h5
+                            className="card-title"
+                            style={{ fontSize: "1.3rem" }}
+                          >
+                            10 Years
+                          </h5>
+                          <p className="card-text"></p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-md-4" style={{ height: "200px" }}>
+                      <div className="card h-100">
+                        <div className="card-body">
+                          <h5
+                            className="card-title"
+                            style={{ fontSize: "1.3rem" }}
+                          >
+                            25 Years
+                          </h5>
+                          <p className="card-text"></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </>
               )}
             </div>
           </div>
