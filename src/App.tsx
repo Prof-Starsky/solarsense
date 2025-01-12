@@ -77,7 +77,10 @@ export const App = () => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     console.log(inputValue2);
-    const isSqft = parseFloat(inputValue2);
+    let isSqft = parseInt(inputValue2);
+    if (isNaN(isSqft)) {
+      isSqft = 1;
+    };
     console.log(isSqft);
 
     // Get all responses
