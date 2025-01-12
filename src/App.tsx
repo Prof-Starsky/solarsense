@@ -190,12 +190,16 @@ export const App = () => {
         height: "100vh",
         overflow: "hidden",
         padding: "20px",
+        background: "#004d40",
       }}
     >
       <div className="row h-100">
         {/* Left half - Map Container */}
         <div className="col-6">
-          <div className="card h-100">
+          <div className="card" style={{height: "30%", marginBottom: "20px"}}>
+            <img src="/public/logo_icon.png" alt="logo" style={{height: "100%"}}/>
+          </div>
+          <div className="card" style={{ height: "66%" }}>
             <div className="card-body" style={{ position: "relative" }}>
               <iframe
                 src="../maps.html"
