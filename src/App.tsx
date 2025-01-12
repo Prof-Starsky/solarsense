@@ -135,7 +135,7 @@ export const App = () => {
 
   const sunPerYear = async (address: string) => {
     const response = await chatWithCohere(
-      `How many hours of sunlight does ${address} get per year? Give an reasonable and concise answer. Respond in the exact format: ${address} receives about 'answer' hours of sunshine per year.`
+      `How many hours of sunlight does ${address} get per year? Give an reasonable and concise answer based off the latitude and longitude. Respond in the exact format: ${address} receives about 'answer' hours of sunshine per year.`
     );
     return response;
   };
