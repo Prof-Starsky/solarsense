@@ -262,7 +262,8 @@ export const App = () => {
       <div className="row h-100">
         {/* Left half - Map Container */}
         <div className="col-6">
-          <div className="card" style={{ height: "100%" }}>
+
+          <div className="card" style={{ height: "66%", marginBottom: "20px" }}>
             <div className="card-body" style={{ position: "relative" }}>
               <iframe
                 src="../maps.html"
@@ -275,6 +276,23 @@ export const App = () => {
                 }}
                 title="map"
               />
+            </div>
+          </div>
+
+          {/* New Card */}
+          <div
+            className="card"
+            style={{
+              height: "30%",
+              backgroundColor: "#f2f2f2",
+              padding: "10px",
+            }}
+          >
+            <div className="card-body">
+              <h5 className="card-title" style={{ fontSize: "1.5rem" }}>
+                By getting solar panels, you would prevent {} litres of CO2
+              </h5>
+              <p className="card-text" style={{ fontSize: "1rem" }}></p>
             </div>
           </div>
         </div>
