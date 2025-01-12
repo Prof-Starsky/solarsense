@@ -258,7 +258,7 @@ export const App = () => {
       <div className="row h-30">
         <img
           className="img-fluid"
-          src="C:\Users\bentl\solarsense\public\Bckg2.png"
+          src="/public/Bckg2.png"
           alt="logo"
           style={{ height: "50%", borderRadius: "10px", marginBottom: "20px" }}
         />
