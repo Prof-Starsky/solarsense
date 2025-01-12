@@ -295,8 +295,18 @@ export const App = () => {
               }}
             >
               {co2Save.map((card) => (
-                <div className="card-body" style={{ alignItems: "center", justifyContent: "center", display: "flex" }}>
-                  <h5 className="card-title text-center" style={{ fontSize: "3rem", textAlign: "center" }}>
+                <div
+                  className="card-body"
+                  style={{
+                    alignItems: "center",
+                    justifyContent: "center",
+                    display: "flex",
+                  }}
+                >
+                  <h5
+                    className="card-title text-center"
+                    style={{ fontSize: "3rem", textAlign: "center" }}
+                  >
                     {card.title}
                   </h5>
                 </div>
