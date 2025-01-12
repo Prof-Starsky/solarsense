@@ -120,7 +120,13 @@ export const App = () => {
         text: "",
       },
       {
-        title: costResponse + maintResponse,
+        //It costs $'answer' per square foot to install Solar panels.`
+        //It costs $'answer' per square foot per year to maintain them.`
+        title: `It will cost $${
+          costResNum * isSqft
+        } to install the solar panels and $${
+          maintResNum * isSqft
+        } per year to maintain them.`,
         text: "",
       },
       {
@@ -283,22 +289,22 @@ export const App = () => {
                     value={inputValue2}
                     onChange={handleChange2}
                     className="form-control"
-                    placeholder="Square Feet to install"
-                    style={{ flexGrow: 1, width: "30%" }}
+                    placeholder="Square Feet"
+                    style={{ flexGrow: 1, width: "30%", fontSize: "1.3rem" }}
                   />
                   <input
                     type="text"
                     value={inputValue}
                     onChange={handleChange}
                     className="form-control"
-                    placeholder="Enter address"
-                    style={{ flexGrow: 1, width: "50%" }}
+                    placeholder="Address"
+                    style={{ flexGrow: 1, width: "50%", fontSize: "1.3rem" }}
                   />
 
                   <button
                     type="submit"
                     className="btn btn-primary"
-                    style={{ width: "20%" }}
+                    style={{ width: "20%", fontSize: "1.5rem" }}
                   >
                     Submit
                   </button>
@@ -312,7 +318,12 @@ export const App = () => {
                     <div key={index} className="col-12">
                       <div className="card">
                         <div className="card-body">
-                          <h5 className="card-title">{card.title}</h5>
+                          <h5
+                            className="card-title"
+                            style={{ fontSize: "1.5rem" }}
+                          >
+                            {card.title}
+                          </h5>
                           <p className="card-text">{card.text}</p>
                         </div>
                       </div>
