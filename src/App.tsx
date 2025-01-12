@@ -38,10 +38,13 @@ export const App = () => {
     setInputValue(event.target.value);
   };
 
+  let response = "";
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    const response = await sunPerYear(inputValue);
+    response = await sunPerYear(inputValue);
     console.log(response);
+    console.log(typeof response);
     setInputValue("");
     setShowCards(true);
     setIsTopPosition(true);
