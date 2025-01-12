@@ -2,13 +2,13 @@ import { useState, useEffect } from "react";
 import { getWeatherData } from "./request.ts";
 import { chatWithCohere } from "./cohere.ts";
 import "bootstrap/dist/css/bootstrap.min.css";
-//import { number, set } from "cohere-ai/core/schemas/index";
+import { number, set } from "cohere-ai/core/schemas/index";
 
 export const App = () => {
   const [inputValue, setInputValue] = useState("");
   const [showCards, setShowCards] = useState(false);
   const [isTopPosition, setIsTopPosition] = useState(false);
-  const [isSqft, setIsSqft] = useState(0);
+  //const [isSqft, setIsSqft] = useState(0);
   const [inputValue2, setInputValue2] = useState("");
 
   // Add state for responses
@@ -59,8 +59,8 @@ export const App = () => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    const num = parseFloat(inputValue2);
-    setIsSqft(num);
+    console.log(inputValue2);
+    const isSqft = parseFloat(inputValue2);
     console.log(isSqft);
 
     // Get all responses
@@ -84,6 +84,7 @@ export const App = () => {
     const maintResNum = extractNumber(maintResponse);
     const kwhNum = extractNumber(kwhResponse);
     console.log(responses);
+    console.log(engResponseNum, costResNum, maintResNum, kwhNum);
     const amtSaved = Number(
       ((engResponseNum * kwhNum * 5 - (maintResNum * 5 + costResNum))*isSqft).toFixed(2)
     );
@@ -123,6 +124,7 @@ export const App = () => {
       },
     ]);
 
+    setInputValue2("");
     setInputValue("");
     setShowCards(true);
     setIsTopPosition(true);
@@ -200,7 +202,7 @@ export const App = () => {
         height: "100vh",
         overflow: "hidden",
         padding: "20px",
-        background: "#004d40",
+        background: "#009CD1",
       }}
     >
       <div className="row h-100">
@@ -211,7 +213,7 @@ export const App = () => {
             style={{
               height: "30%",
               marginBottom: "20px",
-              backgroundColor: "limegreen",
+              backgroundColor: "#20AF24",
             }}
           >
             <img
