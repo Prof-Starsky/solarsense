@@ -41,10 +41,17 @@ export const App = () => {
   };
 
   let response = "";
+  let response2 = "";
+  let response3 = "";
+  let response4 = "";
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    response2 = await costPerYear(inputValue);
     response = await sunPerYear(inputValue);
+    response3 = await maintPerYear(inputValue);
+    response4 = await kwhPerYear(inputValue);
+
     console.log(typeof response);
     setInputValue("");
     setShowCards(true);
@@ -65,12 +72,27 @@ export const App = () => {
 
   const sunPerYear = async (address: string) => {
     const response = await chatWithCohere(
-      `How many hours of sunlight does ${address} get per year?`
+      `How many hours of sunlight does ${address} get per year? Give a concise answer`
     );
-    if (typeof response !== "string") {
-      console.log("Response Object:", JSON.stringify(response, null, 2)); // Pretty-print JSON
-    }
     return response;
+  };
+  const costPerYear = async (address: string) => {
+    const response2 = await chatWithCohere(
+      `What is the dollar cost per square foot to install Solars panels at ${address}, assume the most basic and cheapest solar panel. Give a concise answer`
+    );
+    return response2;
+  };
+  const maintPerYear = async (address: string) => {
+    const response3 = await chatWithCohere(
+      `What is the dollar cost per square foot to maintain Solars panels at ${address}, assume the most basic and cheapest solar panel. Give a concise answer`
+    );
+    return response3;
+  };
+  const kwhPerYear = async (address: string) => {
+    const response4 = await chatWithCohere(
+      `What is cost per kwh at ${address}, guess to the best of your ability. Give you answers in dollars. Very concise answer`
+    );
+    return response4;
   };
 
   useEffect(() => {

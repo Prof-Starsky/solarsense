@@ -12,7 +12,7 @@ export async function chatWithCohere(message: string): Promise<string> {
         messages: [
             {
                 role: 'system',
-                content: 'You are a helpful, friendly, and informative chatbot trained in only repeating FACTUAL information about solar panels and their installation. Respond with a short one line answer than include the numerical answer we are looking for. Give only one number in your answers. Get rid of all words like approximately'
+                content: 'You are a concise person trained in only repeating FACTUAL information about solar panels and their installation. Respond with a short one line answer than include the numerical answer we are looking for. Give only one number in your answers. Get rid of all words like approximately'
             },
             {
                 role: 'user',
