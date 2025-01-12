@@ -107,12 +107,10 @@ export const App = () => {
         text: "",
       },
       {
-        title: `So, if you build solar panels, you should expect to earn: `,
+        title: `So, if you build solar panels, you should expect to earn: $${amtSaved} per square foot after five years\n
+        , $${amtSaved2} per square foot after 10 years, and $${amtSaved3} per square foot after 25 years`,
         text: "",
       },
-
-      //$${amtSaved} per square foot after five years\n
-      // , $${amtSaved2} per square foot after 10 years, and $${amtSaved3} per square foot after 25 years`,
     ]);
 
     setInputValue("");
