@@ -2,11 +2,14 @@ import { useState, useEffect } from "react";
 import { getWeatherData } from "./request.ts";
 import { chatWithCohere } from "./cohere.ts";
 import "bootstrap/dist/css/bootstrap.min.css";
+//import { number, set } from "cohere-ai/core/schemas/index";
 
 export const App = () => {
   const [inputValue, setInputValue] = useState("");
   const [showCards, setShowCards] = useState(false);
   const [isTopPosition, setIsTopPosition] = useState(false);
+  const [isSqft, setIsSqft] = useState(0);
+  const [inputValue2, setInputValue2] = useState("");
 
   // Add state for responses
   const [responses, setResponses] = useState({
@@ -49,9 +52,16 @@ export const App = () => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   };
+  const handleChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue2(event.target.value);
+  };
+
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    const num = parseFloat(inputValue2);
+    setIsSqft(num);
+    console.log(isSqft);
 
     // Get all responses
     const sunlightResponse = await sunPerYear(inputValue);
@@ -75,15 +85,15 @@ export const App = () => {
     const kwhNum = extractNumber(kwhResponse);
     console.log(responses);
     const amtSaved = Number(
-      (engResponseNum * kwhNum * 5 - (maintResNum * 5 + costResNum)).toFixed(2)
+      ((engResponseNum * kwhNum * 5 - (maintResNum * 5 + costResNum))*isSqft).toFixed(2)
     );
     const amtSaved2 = Number(
-      (engResponseNum * kwhNum * 10 - (maintResNum * 10 + costResNum)).toFixed(
+      ((engResponseNum * kwhNum * 10 - (maintResNum * 10 + costResNum))*isSqft).toFixed(
         2
       )
     );
     const amtSaved3 = Number(
-      (engResponseNum * kwhNum * 25 - (maintResNum * 25 + costResNum)).toFixed(
+      ((engResponseNum * kwhNum * 25 - (maintResNum * 25 + costResNum))*isSqft).toFixed(
         2
       )
     );
@@ -107,8 +117,8 @@ export const App = () => {
         text: "",
       },
       {
-        title: `So, if you build solar panels, you should expect to earn: $${amtSaved} per square foot after five years\n
-        , $${amtSaved2} per square foot after 10 years, and $${amtSaved3} per square foot after 25 years`,
+        title: `So, if you build solar panels, you should expect to earn: $${amtSaved} after five years\n
+        , $${amtSaved2} after 10 years, and $${amtSaved3} after 25 years`,
         text: "",
       },
     ]);
@@ -234,7 +244,7 @@ export const App = () => {
               >
                 <form
                   onSubmit={handleSubmit}
-                  className={isTopPosition ? "w-100" : "w-50"}
+                  className={isTopPosition ? "w-100" : "w-100"}
                   style={{
                     display: "flex",
                     gap: "10px",
@@ -248,16 +258,26 @@ export const App = () => {
                 >
                   <input
                     type="text"
+                    value={inputValue2}
+                    onChange={handleChange2}
+                    className="form-control"
+                    placeholder="Square Feet to install"
+                    style={{ flexGrow: 1, width: "30%" }}
+                  />
+                  <input
+                    type="text"
                     value={inputValue}
                     onChange={handleChange}
                     className="form-control"
                     placeholder="Enter address"
-                    style={{ flexGrow: 1 }}
+                    style={{ flexGrow: 1, width: "50%" }}
                   />
-                  <button type="submit" className="btn btn-primary">
+                  
+                  <button type="submit" className="btn btn-primary" style={{width: "20%"}}>
                     Submit
                   </button>
                 </form>
+                
               </div>
 
               {/* Cards that appear after submit */}
