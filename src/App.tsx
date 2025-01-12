@@ -231,7 +231,9 @@ export const App = () => {
     const handleMessage = async (event: MessageEvent) => {
       if (event.data.type === "SET_LAT_LNG") {
         console.log(event.data.lat, event.data.lng);
+// eslint-disable-next-line
         lat = event.data.lat;
+// eslint-disable-next-line
         long = event.data.lng;
         const weatherData = await getWeatherData(lat, long);
         console.log("Averages", weatherData);
@@ -258,7 +260,7 @@ export const App = () => {
       <div className="row h-30">
         <img
           className="img-fluid"
-          src="/public/Bckg2.png"
+          src="/Bckg2.png"
           alt="logo"
           style={{ height: "50%", borderRadius: "10px", marginBottom: "20px" }}
         />
