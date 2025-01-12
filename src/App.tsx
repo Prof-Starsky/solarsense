@@ -20,7 +20,7 @@ export const App = () => {
 
   // dummy stuff to stop it from fucking erroring im gonna crash out
   if (responses == responses || setShowMap == setShowMap) {
-    console.log("Execution successful!")
+    console.log("Execution successful!");
   }
 
   // Update cardsContent to be dependent on responses
@@ -110,7 +110,7 @@ export const App = () => {
         text: "",
       },
       {
-        title: `${amtSaved}, ${amtSaved2}, ${amtSaved3}`,
+        title: `$${amtSaved}, $${amtSaved2}, $${amtSaved3}`,
         text: "",
       },
     ]);
