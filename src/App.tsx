@@ -6,8 +6,8 @@ import { number, set } from "cohere-ai/core/schemas/index";
 
 export const App = () => {
   const [inputValue, setInputValue] = useState("");
-  const [showCards, setShowCards] = useState(false);
-  const [isTopPosition, setIsTopPosition] = useState(false);
+  const [showCards, setShowCards] = useState(true);
+  const [isTopPosition, setIsTopPosition] = useState(true);
   //const [isSqft, setIsSqft] = useState(0);
   const [inputValue2, setInputValue2] = useState("");
 
@@ -25,24 +25,24 @@ export const App = () => {
   // Update cardsContent to be dependent on responses
   const [cardsContent, setCardsContent] = useState([
     {
-      title: "",
-      text: "2002 hours every single year",
+      title: "Hours of Sunshine per year:",
+      text: "",
     },
     {
-      title: "Based on Solar Power Advancement and amount of sunlight",
-      text: "With solar panels, you would generate 274 kwh of energy per square foot per year",
+      title: "Energy Generated per year:",
+      text: "",
     },
     {
-      title: "",
-      text: "That means electricity costs $1920 minus $52.6 per square foot a year",
+      title: "Electricity Cost:",
+      text: "",
     },
     {
-      title: "",
-      text: "and it costs about $1 per square foot per year to maintain them",
+      title: "Installation and Maintenance Cost:",
+      text: "",
     },
     {
-      title: "This results in a final yearly cost of ~$1920+$1/square ft",
-      text: "But in the same time frame you make $52/year",
+      title: "Profitability:",
+      text: "",
     },
   ]);
 
