@@ -7,7 +7,7 @@ const cohere = new CohereClientV2({
 });
 
 export async function chatWithCohere(message: string): Promise<string> {
-    const stream = await cohere.chatStream({
+    const stream = await cohere.chat({
         model: 'command-r7b-12-2024',
         messages: [
             {
@@ -21,15 +21,9 @@ export async function chatWithCohere(message: string): Promise<string> {
         ]
     });
 
-    let fullResponse = '';
+    console.log(stream.message.content[0].text);
 
-    for await (const chatEvent of stream) {
-        if (chatEvent.type === 'content-delta') {
-            fullResponse += chatEvent.delta?.message || '';
-        }
-    }
-
-    return fullResponse;
+    return stream.message.content[0].text;
 }
 
 // Example usage:

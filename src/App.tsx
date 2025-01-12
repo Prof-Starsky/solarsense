@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { getWeatherData } from "./request.ts";
+import { chatWithCohere } from "./cohere.ts";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export const App = () => {
@@ -39,8 +40,13 @@ export const App = () => {
     setInputValue(event.target.value);
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  let response = "";
+
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    response = await sunPerYear(inputValue);
+    console.log(response);
+    console.log(typeof response);
     setInputValue("");
     setShowCards(true);
     setIsTopPosition(true);
@@ -57,6 +63,19 @@ export const App = () => {
       }
     }, 100);
   };
+
+  const sunPerYear = async (address: string) => {
+    const response = await chatWithCohere(
+      `How many hours of sunlight does ${address} get per year?`
+    );
+    if (typeof response !== 'string') {
+      console.log('Response Object:', JSON.stringify(response, null, 2)); // Pretty-print JSON
+  } else {
+      console.log('Response String:', response); // Log the string response
+  }
+    return response;
+  };
+
 
   useEffect(() => {
     const handleMessage = async (event: MessageEvent) => {
