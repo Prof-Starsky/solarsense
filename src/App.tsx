@@ -158,7 +158,6 @@ export const App = () => {
       },
     ]);
 
-
     setInputValue2("");
     setInputValue("");
     setInputValue2("");
@@ -267,6 +266,23 @@ export const App = () => {
               />
             </div>
           </div>
+
+          {/* New Card */}
+          <div
+            className="card"
+            style={{
+              height: "30%",
+              backgroundColor: "#f2f2f2",
+              padding: "10px",
+            }}
+          >
+            <div className="card-body">
+              <h5 className="card-title" style={{ fontSize: "1.5rem" }}>
+                By getting solar panels, you would prevent {} litres of CO2
+              </h5>
+              <p className="card-text" style={{ fontSize: "1rem" }}></p>
+            </div>
+          </div>
         </div>
 
         {/* Right half - Content Container */}
@@ -354,20 +370,31 @@ export const App = () => {
                   <div className="row g-3 mt-2">
                     {profitData.map((card) => (
                       <div className="col-md-4" style={{ height: "150px" }}>
-                      <div className="card h-100">
-                        <div className="card-body">
-                          <h5
-                            className="card-title"
-                            style={{ fontSize: "1.5rem" }}
-                          >
-                            {card.title}
-                          </h5>
-                          <h5 className="card-title">{card.text}</h5>
+                        <div className="card h-100">
+                          <div className="card-body">
+                            <h5
+                              className="card-title"
+                              style={{
+                                fontSize: "1.5rem",
+                                alignContent: "center",
+                              }}
+                            >
+                              {card.title}
+                            </h5>
+                            <h5
+                              className="card-title"
+                              style={{
+                                fontSize: "1.5rem",
+                                alignContent: "center",
+                              }}
+                            >
+                              {card.text}
+                            </h5>
+                          </div>
                         </div>
                       </div>
-                    </div>
                     ))}
-                    
+
                     {/* <div className="col-md-4" style={{ height: "150px" }}>
                       <div className="card h-100">
                         <div className="card-body">
