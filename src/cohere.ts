@@ -21,8 +21,10 @@ export async function chatWithCohere(message: string): Promise<string> {
         ]
     });
 
+    //@ts-expect-error asd
     console.log(stream.message.content[0].text);
 
+    //@ts-expect-error asd
     return stream.message.content[0].text;
 }
 
