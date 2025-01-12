@@ -196,9 +196,21 @@ export const App = () => {
       <div className="row h-100">
         {/* Left half - Map Container */}
         <div className="col-6">
-          <div className="card" style={{height: "30%", marginBottom: "20px"}}>
-            <img src="/public/logo_icon.png" alt="logo" style={{height: "100%"}}/>
+          <div
+            className="card"
+            style={{
+              height: "30%",
+              marginBottom: "20px",
+              backgroundColor: "limegreen",
+            }}
+          >
+            <img
+              src="/public/download.png"
+              alt="logo"
+              style={{ height: "100%" }}
+            />
           </div>
+
           <div className="card" style={{ height: "66%" }}>
             <div className="card-body" style={{ position: "relative" }}>
               <iframe
@@ -208,6 +220,7 @@ export const App = () => {
                   height: "100%",
                   border: "none",
                   display: "block",
+                  backgroundColor: "#00ad28",
                 }}
                 title="map"
               />
