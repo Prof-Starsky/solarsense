@@ -231,9 +231,9 @@ export const App = () => {
     const handleMessage = async (event: MessageEvent) => {
       if (event.data.type === "SET_LAT_LNG") {
         console.log(event.data.lat, event.data.lng);
-// eslint-disable-next-line
+        // eslint-disable-next-line
         lat = event.data.lat;
-// eslint-disable-next-line
+        // eslint-disable-next-line
         long = event.data.lng;
         const weatherData = await getWeatherData(lat, long);
         console.log("Averages", weatherData);
