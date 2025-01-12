@@ -3,7 +3,7 @@ import { getWeatherData } from "./request.ts";
 import { chatWithCohere } from "./cohere.ts";
 import "bootstrap/dist/css/bootstrap.min.css";
 // import { title } from "process";
-// import { text } from "stream/consumers"
+// import { text } from "stream/consumers
 
 export const App = () => {
   const [inputValue, setInputValue] = useState("");
@@ -80,7 +80,7 @@ export const App = () => {
     let isSqft = parseInt(inputValue2);
     if (isNaN(isSqft)) {
       isSqft = 1;
-    };
+    }
     console.log(isSqft);
 
     // Get all responses
