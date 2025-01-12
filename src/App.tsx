@@ -9,24 +9,26 @@ export const App = () => {
   const [isTopPosition, setIsTopPosition] = useState(false);
   const [cardsContent] = useState([
     {
-      title: "Solar Panel System",
-      text: "High-efficiency solar panels with 400W output per panel. Ideal for residential installations.",
+      title: "Sunlight hits your house for approximately: ",
+      text: "2002 hours every single year",
     },
     {
-      title: "Battery Storage",
-      text: "13.5 kWh Powerwall battery system for energy storage. Perfect for night-time power needs.",
+      title: "Based on Solar Power Advancement and amount of sunlight",
+      text: "With solar panels, you would generate 274 kwh of energy per square foot per year",
     },
     {
-      title: "Inverter System",
-      text: "Smart inverter with 98% efficiency rating. Converts DC to AC power seamlessly.",
+      title:
+        "It costs approximately $0.19 per kwh with the average home use being 10000 kwh/year",
+      text: "That means electricity costs $1920 minus $52.6 per square foot a year",
     },
     {
-      title: "Installation Package",
-      text: "Professional installation by certified technicians. Includes permits and inspections.",
+      title:
+        "In your area, it costs about $12 per square foot to install solar panels",
+      text: "and it costs about $1 per square foot per year to maintain them",
     },
     {
-      title: "Monitoring System",
-      text: "Real-time energy production and consumption monitoring via smartphone app.",
+      title: "This results in a final yearly cost of ~$1920+$1/square ft",
+      text: "But in the same time frame you make $52/year",
     },
   ]);
 
