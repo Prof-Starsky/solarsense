@@ -241,17 +241,20 @@ export const App = () => {
       }}
     >
       <div className="row h-30">
-            <img
-              className="img-fluid"
-              src="/public/Bckg2.png"
-              alt="logo"
-              style={{ height: "50%", borderRadius: "10px", marginBottom: "20px" }}
-            />
+        <img
+          className="img-fluid"
+          src="/public/Bckg2.png"
+          alt="logo"
+          style={{ height: "50%", borderRadius: "10px", marginBottom: "20px" }}
+        />
       </div>
       <div className="row h-100">
         {/* Left half - Map Container */}
         <div className="col-6">
-          <div className="card" style={{ height: "100%", backgroundColor: "#353739" }}>
+          <div
+            className="card"
+            style={{ height: "100%", backgroundColor: "#353739" }}
+          >
             <div className="card-body" style={{ position: "relative" }}>
               <iframe
                 src="../maps.html"
@@ -265,22 +268,22 @@ export const App = () => {
                 title="map"
               />
             </div>
-          </div>
-
-          {/* New Card */}
-          <div
-            className="card"
-            style={{
-              height: "30%",
-              backgroundColor: "#f2f2f2",
-              padding: "10px",
-            }}
-          >
-            <div className="card-body">
-              <h5 className="card-title" style={{ fontSize: "1.5rem" }}>
-                By getting solar panels, you would prevent {} litres of CO2
-              </h5>
-              <p className="card-text" style={{ fontSize: "1rem" }}></p>
+            {/* New Card */}
+            <div
+              className="card"
+              style={{
+                height: "30%",
+                backgroundColor: "#f2f2f2",
+                padding: "10px",
+                margin: "20px",
+              }}
+            >
+              <div className="card-body">
+                <h5 className="card-title" style={{ fontSize: "1.5rem" }}>
+                  By getting solar panels, you would prevent {} litres of CO2
+                </h5>
+                <p className="card-text" style={{ fontSize: "1rem" }}></p>
+              </div>
             </div>
           </div>
         </div>
@@ -364,7 +367,16 @@ export const App = () => {
                       </div>
                     ))}
                   </div>
-                  <h3 style={{fontSize: "2rem", marginTop: "2rem", marginLeft: "5px", color: "white"}}>Earnings After:</h3>
+                  <h3
+                    style={{
+                      fontSize: "2rem",
+                      marginTop: "2rem",
+                      marginLeft: "5px",
+                      color: "white",
+                    }}
+                  >
+                    Earnings After:
+                  </h3>
 
                   {/* New section with 3 cards side-by-side */}
                   <div className="row g-3 mt-2">
@@ -375,7 +387,7 @@ export const App = () => {
                             <h5
                               className="card-title"
                               style={{
-                                fontSize: "1.5rem",
+                                fontSize: "2.0rem",
                                 alignContent: "center",
                               }}
                             >
@@ -384,7 +396,7 @@ export const App = () => {
                             <h5
                               className="card-title"
                               style={{
-                                fontSize: "1.5rem",
+                                fontSize: "2.0rem",
                                 alignContent: "center",
                               }}
                             >
