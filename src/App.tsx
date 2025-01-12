@@ -111,7 +111,7 @@ export const App = () => {
       {
         title: `With solar panels, you would generate ${
           engResponseNum * isSqft
-        } kwh of energy`,
+        } kwh of energy per year`,
         text: "",
       },
       {
