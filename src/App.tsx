@@ -73,6 +73,24 @@ export const App = () => {
       kwhCost: kwhResponse,
     });
 
+    const engResponseNum = extractNumber(engResponse);
+    const costResNum = extractNumber(costResponse);
+    const maintResNum = extractNumber(maintResponse);
+    const kwhNum = extractNumber(kwhResponse);
+    const amtSaved = Number(
+      (engResponseNum * kwhNum * 5 - (maintResNum * 5 + costResNum)).toFixed(2)
+    );
+    const amtSaved2 = Number(
+      (engResponseNum * kwhNum * 10 - (maintResNum * 10 + costResNum)).toFixed(
+        2
+      )
+    );
+    const amtSaved3 = Number(
+      (engResponseNum * kwhNum * 25 - (maintResNum * 25 + costResNum)).toFixed(
+        2
+      )
+    );
+
     // Update cards content with new responses
     setCardsContent([
       {
@@ -92,7 +110,7 @@ export const App = () => {
         text: "",
       },
       {
-        title: "This results in a final yearly cost of ~$1920+$1/square ft",
+        title: `${amtSaved}, ${amtSaved2}, ${amtSaved3}`,
         text: "",
       },
     ]);
@@ -113,6 +131,10 @@ export const App = () => {
       }
     }, 100);
   };
+  const extractNumber = (response: string): number => {
+    const match = response.match(/(\d{1,3}(,\d{3})*(.\d+)?)/);
+    return match ? parseFloat(match[0]) : 0;
+  };
 
   const sunPerYear = async (address: string) => {
     const response = await chatWithCohere(
@@ -122,7 +144,7 @@ export const App = () => {
   };
   const engPerYear = async (address: string) => {
     const response5 = await chatWithCohere(
-      `How many kwh are generated per square foot per year of Solar panels with the amount of sunlight from ${address}?. Max number of kwh generated is 10 kwh per square foot per year. Respond in the exact format: With solar panels, you would generate 'answer' kwh of energy per square foot per year `
+      `How many kwh are generated per square foot per year of Solar panels with the amount of sunlight from ${address}?. More sunlight = more kwh generated. Max number of kwh generated is 10 kwh per square foot per year. Respond in the exact format: With solar panels, you would generate 'answer' kwh of energy per square foot per year `
     );
     return response5;
   };
@@ -134,7 +156,7 @@ export const App = () => {
   };
   const costPerYear = async (address: string) => {
     const response2 = await chatWithCohere(
-      `What is the dollar cost per square foot to install Solars panels at ${address} based on local prices? The min cost is $4 per square foot. Respond in the exact format: It costs $'answer' per square foot to install Solar panels.`
+      `What is the dollar cost per square foot to install Solars panels at ${address} based on local prices? The min cost is $2 per square foot. Respond in the exact format: It costs $'answer' per square foot to install Solar panels.`
     );
     return response2;
   };
