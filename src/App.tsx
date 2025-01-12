@@ -150,9 +150,9 @@ export const App = () => {
         //It costs $'answer' per square foot to install Solar panels.`
         //It costs $'answer' per square foot per year to maintain them.`
         title: `It will cost $${
-          costResNum * isSqft
+          (costResNum * isSqft).toFixed(2)
         } to install the solar panels and $${
-          maintResNum * isSqft
+          (maintResNum * isSqft).toFixed(2)
         } per year to maintain them.`,
         text: "",
       },
