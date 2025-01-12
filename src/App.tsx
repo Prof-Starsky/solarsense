@@ -69,11 +69,12 @@ export const App = () => {
     setCardsContent([
       {
         title: sunlightResponse,
-        text: "2002 hours every single year",
+        text: "",
       },
       {
-        title: "Based on Solar Power Advancement and amount of sunlight",
-        text: "With solar panels, you would generate 274 kwh of energy per square foot per year",
+        title:
+          "With solar panels, you would generate 274 kwh of energy per square foot per year",
+        text: "",
       },
       {
         title: `It costs approximately ${kwhResponse} per kwh with the average home use being 10000 kwh/year`,
@@ -108,7 +109,7 @@ export const App = () => {
 
   const sunPerYear = async (address: string) => {
     const response = await chatWithCohere(
-      `How many hours of sunlight does ${address} get per year? Give an reasonable and concise answer. Answer in hours per year`
+      `How many hours of sunlight does ${address} get per year? Give an reasonable and concise answer.`
     );
     return response;
   };
