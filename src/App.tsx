@@ -129,13 +129,13 @@ export const App = () => {
     }, 100);
   };
   const extractNumber = (response: string): number => {
-    const match = response.match(/(\d{1,3}(,\d{3})*(.\d+)?)/);
-    return match ? parseFloat(match[0]) : 0;
+    const match = response.match(/(?<!\w\s)(?<!\w)(\d{1,3}(,\d{3})*(\.\d+)?)/);
+    return match ? parseFloat(match[0].replace(/,/g, '')) : 0;
   };
 
   const sunPerYear = async (address: string) => {
     const response = await chatWithCohere(
-      `How many hours of sunlight does ${address} get per year? Give an reasonable and concise answer based off the latitude and longitude. Respond in the exact format: ${address} receives about 'answer' hours of sunshine per year.`
+      `How many hours of sunlight does ${address} get per year? Give an reasonable and concise answer. Respond in the exact format: ${address} receives about 'answer' hours of sunshine per year.`
     );
     return response;
   };
